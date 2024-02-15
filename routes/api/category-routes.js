@@ -38,6 +38,15 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
+  Category.update({
+    where: {
+      id: req.params.id
+    },
+  })
+  .then((updatedCategory) => {
+    res.json(updatedCategory);
+  })
+  .catch((err) => res.json(err))
   // update a category by its `id` value
 });
 
