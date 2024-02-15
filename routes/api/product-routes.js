@@ -17,15 +17,24 @@ Product.findAll({
 },
 ).then((products) => {
 res.json(products)
-  // find all products
-  // be sure to include its associated Category and Tag data
 })
 });
 
 // get one product
 router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  Product.findByPk(req.params.id, {
+    include: [
+     {
+       model: Category,
+     },
+     {
+       model: Tag
+     }
+    ]
+   },
+   ).then((products) => {
+   res.json(products)
+   })
 });
 
 // create new product
