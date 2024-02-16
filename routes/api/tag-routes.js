@@ -34,18 +34,25 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  // create a new tag
+  Tag.create(
+    req.body,
+  ).then((newCategory) => {
+    res.json(newCategory)
+  })
+  .catch((err) => res.json(err))
 });
 
 router.put('/:id', (req, res) => {
-  Tag.update({
-    where: {
+  Tag.update(
+    req.body,
+    {where: {
       id: req.params.id
     },
   })
   .then((updatedTag) => {
     res.json(updatedTag)
   })
+  .catch((err) => res.json(err))
 });
 
 router.delete('/:id', (req, res) => {
