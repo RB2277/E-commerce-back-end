@@ -3,7 +3,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// get all products
+//Get all products
 router.get('/', (req, res) => {
 Product.findAll({
  include: [
@@ -20,7 +20,7 @@ res.json(products)
 })
 });
 
-// get one product
+//Get product by id
 router.get('/:id', (req, res) => {
   Product.findByPk(req.params.id, {
     include: [
@@ -37,7 +37,7 @@ router.get('/:id', (req, res) => {
    })
 });
 
-// create new product
+//Create a product
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {
@@ -69,7 +69,7 @@ router.post('/', (req, res) => {
     });
 });
 
-// update product
+//Update a product
 router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
@@ -114,6 +114,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
+//Delete a product
 router.delete('/:id', (req, res) => {
   Product.destroy({
     where: {
